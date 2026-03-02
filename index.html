@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular</title>
+</head>
+<body>
+    <form action="/submit" method="POST">
+        <fieldset>
+            <legend>Formular</legend>
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Nachricht:</label>
+            <textarea id="message" name="message" rows="5" cols="40"></textarea>
+            
+            <button type="submit">Absenden</button>
+            <button type="reset">Zurücksetzen</button>
+        </fieldset>
+    </form>
+</body>
+</html>
