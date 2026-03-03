@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Taschenrechner</h1> 
-        <label for="zahl1">Eingabe Zahl 1
+        <label for="num1">Eingabe Zahl 1
             <div> 
             <input id="num1" type="text" placeholder="z.B 5" />
             </div>
@@ -15,24 +15,25 @@
       <br>
     
         <div>
-            <label for="zahl2">Eingabe Zahl 2
+            <label for="num2">Eingabe Zahl 2
                 <div>
                 <input id="num2" type="text" placeholder="z.B 10" />
                 </div>
+            </label>
         </div>
 
         <br>
 
-        <div>
-            <button id="add">+</button>
-            <button id="subtract">-</button>
-            <button id="multiply">*</button>
-            <button id="divide">/</button>
+        <div class="ops">
+            <button id="add" data-op="+">+</button>
+            <button id="subtract" data-op="-">-</button>
+            <button id="multiply" data-op="*">*</button>
+            <button id="divide" data-op="/">/</button>
         </div>
         <br>
 
         <div>
-        <h2>Ergebnis: </h2><span id="result"></span>
+        <h2>Ergebnis: </h2><span id="result"> </span>
         </div>
 
         <div>
