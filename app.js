@@ -29,7 +29,7 @@ function calculate(op) {
     if (op === "-") r = a - b;
     if (op === "*") r = a * b;
     if (op === "/") { 
-    if ( b === 0)  {resultEl.textContent = "Division durch 0"; return;}
+    if ( b === 0)  {resultEl.textContent = "Division durch 0 nicht möglich!"; return;}
         r = a / b;} 
 resultEl.textContent = String(r);
 addHistory(`${a} ${op} ${b} = ${r}`);}
