@@ -76,14 +76,19 @@ function kartenKlick() {
     vergleichen();                              // sind sie gleich?
 }
 
+let versuche = 0;
+
 function vergleichen() {
+    versuche++;
+    document.getElementById("attemptOutput").textContent=versuche; 
     if(ersteKarte.dataset.paar === zweiteKarte.dataset.paar) {
-        // ✅ Paar gefunden!
+        // Paar gefunden!
         ersteKarte.dataset.aufgedeckt = "true";
         zweiteKarte.dataset.aufgedeckt = "true";
         reset();
+        checkWin();
     } else {
-        // ❌ kein Paar → zudecken
+        // kein Paar → zudecken
         gesperrt = true;
         setTimeout(() => {
             ersteKarte.classList.remove("aufgedeckt");
@@ -97,6 +102,52 @@ function reset() {
     ersteKarte = null;
     zweiteKarte = null;
     gesperrt = false;
+}
+
+function checkWin() { 
+
+  
+if(document.querySelectorAll(".karte:not([data-aufgedeckt='true'])").length === 0) {
+    /* document.querySelectorAll liefert eine NodeList 
+    NodeList.lenght -> Anzahl der Elemente in der NodeList & .karte (class) checkt
+    ob alle karten nicht aufgedeckt sind, wenn ja NodeList ist leer -> length = 0 -> Alle Karten aufgedeckt -> gewonnen!
+
+    also basically verneinung von "gibt es noch karten die nicht aufgedeckt sind?" -> wenn nein -> gewonnen!
+        LocalStorage könnte man auch verwenden, um die Historie zu speichern, aber hier wird es einfach in einem Array gespeichert und direkt ausgegeben.
+
+    */
+
+    clearInterval(timer);
+    const playerStats = document.getElementById("playerStats");
+    const statsArray = []; // könnte man was draus machen...
+    let name = document.getElementById("nameOutput").textContent;
+    playerStats.textContent += `${name} - Versuche: ${versuche}, Zeit: ${seconds} Sekunden\n`;   
+    statsArray.push({name: name, versuche: versuche, zeit: seconds});
+    if(confirm(`You win! Versuche: ${versuche}, Zeit: ${seconds} Sekunden. Play again?`)) {
+        versuche = 0;
+        seconds = 0;
+        document.getElementById("attemptOutput").textContent=versuche; 
+        document.getElementById("timeOutput").textContent=seconds;
+        startGame();
+    } else {
+        showEndScreen();
+    }
+}
+
+/*
+Pseudo Code:
+check if every card has dataset.aufgedeckt == "true"
+if yes: stop timer, alert "You win! Versuche + Zeit ausgeben" + "Play again?" (confirm)
+if confirm: reset everything (timer, versuche, karten) -> speicher in History + startGame()
+if no: do nothing.
+
+*/
+
+}
+
+function showEndScreen() {
+const spielbereich = document.getElementById("spielbereich");
+spielbereich.innerHTML = "<h1>Game Over</h1><p>Thanks for playing!</p>";
 }
 
 }

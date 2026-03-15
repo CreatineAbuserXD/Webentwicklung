@@ -57,3 +57,11 @@ color: white;
 	grid-template-columns: repeat(4, 100px); 
 	gap: 10px; 
 }
+
+.infobox.history { 
+	float: none;
+	display: flex;
+	flex-direction: column;
+	max-height: 300px;
+	overflow-y: auto;
+}
